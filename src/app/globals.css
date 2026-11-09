@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy: #0A3C6E;
+  --color-brand-white: #FFFFFF;
+  --color-brand-blue: #1783C1;
+  --color-brand-gray: #333333;
+
+  /* Surfaces & Canvas - Pure Charcoal / Slate (Soft, Neutral & Eye-friendly) */
+  --color-slate-950: #121214;
+  --color-slate-900: #18181B;
+  --color-slate-800: #27272A;
+  --color-slate-700: #3F3F46;
+  --color-slate-600: #52525B;
+
+  /* Typography: Light, readable, and soft on the eyes */
+  --color-slate-500: #71717A;
+  --color-slate-400: #A1A1AA;
+  --color-slate-300: #D4D4D8;
+  --color-slate-200: #E4E4E7;
+  --color-slate-100: #F4F4F5;
+  --color-slate-50: #FFFFFF;
+
+  /* Primary Action Buttons & Important Elements: Navy #0A3C6E */
+  --color-emerald-950: #072B50;
+  --color-emerald-900: #0A3C6E;
+  --color-emerald-800: #0A3C6E;
+  --color-emerald-700: #0A3C6E;
+  --color-emerald-600: #0A3C6E;
+  --color-emerald-500: #0A3C6E;
+  --color-emerald-400: #1783C1;
+  --color-emerald-300: #2998DB;
+  --color-emerald-200: #38BDF8;
+  --color-emerald-100: #0A3C6E;
+  --color-emerald-50: #18181B;
+
+  --color-green-950: #072B50;
+  --color-green-900: #0A3C6E;
+  --color-green-800: #0A3C6E;
+  --color-green-700: #0A3C6E;
+  --color-green-600: #0A3C6E;
+  --color-green-500: #0A3C6E;
+  --color-green-400: #1783C1;
+  --color-green-300: #2998DB;
+  --color-green-200: #38BDF8;
+  --color-green-100: #0A3C6E;
+  --color-green-50: #18181B;
+
+  /* Purple & Violet mapped to Brand Blue & Navy */
+  --color-purple-950: #072B50;
+  --color-purple-900: #0A3C6E;
+  --color-purple-800: #0A3C6E;
+  --color-purple-700: #0A3C6E;
+  --color-purple-600: #0A3C6E;
+  --color-purple-500: #1783C1;
+  --color-purple-400: #2998DB;
+  --color-purple-300: #38BDF8;
+  --color-purple-200: #7DD3FC;
+  --color-purple-100: #0A3C6E;
+  --color-purple-50: #18181B;
+
+  --color-violet-950: #072B50;
+  --color-violet-900: #0A3C6E;
+  --color-violet-800: #0A3C6E;
+  --color-violet-700: #0A3C6E;
+  --color-violet-600: #0A3C6E;
+  --color-violet-500: #1783C1;
+  --color-violet-400: #2998DB;
+  --color-violet-300: #38BDF8;
+  --color-violet-200: #7DD3FC;
+  --color-violet-100: #0A3C6E;
+  --color-violet-50: #18181B;
+
+  --color-blue-950: #072B50;
+  --color-blue-900: #0A3C6E;
+  --color-blue-600: #0A3C6E;
+  --color-blue-500: #1783C1;
+  --color-blue-400: #1783C1;
+  --color-blue-300: #2998DB;
+
+  --color-teal-950: #072B50;
+  --color-teal-900: #0A3C6E;
+  --color-teal-600: #0A3C6E;
+  --color-teal-500: #1783C1;
+  --color-teal-400: #1783C1;
+  --color-teal-300: #2998DB;
+
+  --color-indigo-950: #18181B;
+  --color-indigo-900: #0A3C6E;
+  --color-indigo-600: #0A3C6E;
+  --color-indigo-500: #1783C1;
+  --color-indigo-400: #1783C1;
+  --color-indigo-300: #2998DB;
+}
+
+/* ========================================================
+   FORCE STRICT ENGLISH/LATIN NUMERALS (0-9) GLOBALLY
+   Prevents Windows/Browser native digit substitution (٠-٩)
+   ======================================================== */
+@font-face {
+  font-family: 'StrictLatinDigits';
+  src: local('Segoe UI'), local('Arial'), local('Helvetica Neue'), local('sans-serif');
+  unicode-range: U+0030-0039, U+002E, U+002C, U+0025, U+002F, U+002D, U+002B; /* 0-9 . , % / - + */
+}
+
+@layer base {
+  body {
+    font-family: 'StrictLatinDigits', 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-feature-settings: "locl" 0;
+    font-variant-numeric: tabular-nums lining-nums;
+    background-color: #121214;
+    color: #F4F4F5;
+  }
+
+  ::selection {
+    background-color: #1783C1;
+    color: #FFFFFF;
+  }
+
+  /* Force all inputs, selects and buttons to prioritize Latin numerals */
+  input, select, textarea, button {
+    font-family: 'StrictLatinDigits', 'Tajawal', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "locl" 0;
+  }
+
+  /* Force numeric and date inputs to display strictly in Western digits and LTR flow */
+  input[type="number"],
+  input[type="date"],
+  input[type="tel"],
+  input[inputmode="numeric"],
+  .font-mono,
+  .tabular-nums {
+    direction: ltr !important;
+    text-align: right;
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "locl" 0, "tnum" 1;
+  }
+
+  /* Chrome date picker internal shadow DOM text */
+  input[type="date"]::-webkit-datetime-edit,
+  input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+  input[type="date"]::-webkit-datetime-edit-text,
+  input[type="date"]::-webkit-datetime-edit-month-field,
+  input[type="date"]::-webkit-datetime-edit-day-field,
+  input[type="date"]::-webkit-datetime-edit-year-field {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+}
+
+/* Primary buttons with white text -> Deep Navy #0A3C6E (WCAG compliant) */
+button[class*="bg-emerald-600"],
+button[class*="bg-emerald-500"],
+button[class*="bg-indigo-600"],
+button[class*="bg-[#0A3C6E]"],
+[role="button"][class*="bg-[#0A3C6E]"],
+.btn-primary {
+  background-color: #0A3C6E !important;
+  color: #FFFFFF !important;
+}
+
+button[class*="bg-emerald-600"]:hover,
+button[class*="bg-emerald-500"]:hover,
+button[class*="bg-indigo-600"]:hover,
+button[class*="bg-[#0A3C6E]"]:hover,
+[role="button"][class*="bg-[#0A3C6E]"]:hover {
+  background-color: #1783C1 !important;
+}
+
+/* Always preserve white text inside any Navy, Emerald-600, or Danger button */
+button[class*="bg-emerald-600"] *,
+button[class*="bg-emerald-500"] *,
+button[class*="bg-indigo-600"] *,
+button[class*="bg-[#0A3C6E]"] *,
+[role="button"][class*="bg-[#0A3C6E]"] *,
+.text-white[class*="bg-[#0A3C6E]"] {
+  color: #FFFFFF !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121214;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1783C1;
+}
