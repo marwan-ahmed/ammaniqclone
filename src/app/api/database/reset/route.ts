@@ -24,7 +24,7 @@ export const revalidate = 0;
 
 export async function POST(req: Request) {
   try {
-    const adminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@aman.iq').toLowerCase().trim();
+    const adminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@ammaniqclone.com').toLowerCase().trim();
 
     const cleanCompany = await db.transaction(async (tx) => {
       // 1. Wiping tables in strict relational dependency order

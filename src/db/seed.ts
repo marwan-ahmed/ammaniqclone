@@ -1,14 +1,8 @@
 import { db } from './index';
 import {
   companies,
-  investors,
-  investorContracts,
   wallets,
-  inventoryItems,
-  borrowers,
-  installmentContracts,
-  installmentSchedules,
-  ledgerTransactions
+  employees
 } from './schema';
 import * as dotenv from 'dotenv';
 
@@ -23,9 +17,11 @@ async function main() {
     city: 'سامراء',
     governorate: 'صلاح الدين',
     currency: 'IQD',
-  }).returning();
+  }).onConflictDoNothing().returning();
 
-  console.log('✅ Company created:', company.name);
+  if (company) {
+    console.log('✅ Company created:', company.name);
+  }
 
   // 2. Insert Company Wallet (0.00 IQD)
   await db.insert(wallets).values({
@@ -33,7 +29,28 @@ async function main() {
     ownerName: 'صندوق نظام أمان للتقسيط الرئيسي',
     balanceIQD: '0.00',
     totalCapitalDepositedIQD: '0.00',
-  });
+  }).onConflictDoNothing();
+
+  // 3. Insert Super Admin Employee
+  const adminEmail = (process.env.ADMIN_EMAIL || process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@ammaniqclone.com').toLowerCase().trim();
+  await db.insert(employees).values({
+    id: 'emp-1',
+    name: 'المدير العام',
+    role: 'مدير النظام',
+    phone: '07700000000',
+    email: adminEmail,
+    nationalId: 'IQ-10029384',
+    salaryIQD: '1500000.00',
+    status: 'نشط',
+    permissions: JSON.stringify([
+      'DASHBOARD_VIEW', 'INVESTORS_MANAGE', 'BORROWERS_MANAGE',
+      'FUNDS_MANAGE', 'INVENTORY_MANAGE', 'CONTRACTS_CREATE',
+      'EXPENSES_MANAGE', 'REVENUES_MANAGE', 'REPORTS_VIEW',
+      'DEBT_LEDGER_MANAGE', 'EMPLOYEES_MANAGE', 'SETTINGS_MANAGE',
+      'TRASH_MANAGE', 'PERMISSIONS_ASSIGN'
+    ]),
+    notes: 'المدير العام المالك وصاحب الصلاحيات الشاملة المطلقة للنظام'
+  }).onConflictDoNothing();
 
   console.log('🎉 Clean Database seeding finished successfully!');
 }

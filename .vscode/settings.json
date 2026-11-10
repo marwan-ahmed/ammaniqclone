@@ -1,3 +1,4 @@
 {
-    "google.datacloud.enableTelemetry": false
+    "google.datacloud.enableTelemetry": false,
+    "git.ignoreLimitWarning": true
 }

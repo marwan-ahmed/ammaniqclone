@@ -112,7 +112,7 @@ export async function GET(req: Request) {
     const adminPasscode = settingsMap['admin_passcode'] || '2026';
 
     // Auto-heal/seed System Admin (أحمد إياد) if missing from Neon DB
-    const adminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@aman.iq').toLowerCase().trim();
+    const adminEmail = (process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@ammaniqclone.com').toLowerCase().trim();
     const hasAdmin = allEmployees.some(e => e.email.toLowerCase().trim() === adminEmail);
 
     if (!hasAdmin) {

@@ -15,7 +15,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({ currentEmployee }) => 
     name: 'أحمد إياد',
     role: 'مدير النظام',
     phone: '07705554433',
-    email: 'admin@aman.iq',
+    email: typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_ADMIN_EMAIL ? process.env.NEXT_PUBLIC_ADMIN_EMAIL : 'admin@ammaniqclone.com',
     nationalId: 'IQ-10029384',
     salaryIQD: 1500000,
     status: 'نشط',

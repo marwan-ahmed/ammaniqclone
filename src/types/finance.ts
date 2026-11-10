@@ -289,7 +289,7 @@ export const SYSTEM_ADMIN_EMPLOYEE: Employee = {
   name: 'أحمد إياد',
   role: 'مدير النظام',
   phone: '07705554433',
-  email: typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_ADMIN_EMAIL ? process.env.NEXT_PUBLIC_ADMIN_EMAIL : 'admin@aman.iq',
+  email: typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_ADMIN_EMAIL ? process.env.NEXT_PUBLIC_ADMIN_EMAIL : 'admin@ammaniqclone.com',
   nationalId: 'IQ-10029384',
   salaryIQD: 1500000,
   status: 'نشط',
